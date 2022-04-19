@@ -1,0 +1,2 @@
+Comments on timing results:
+The parallel program completed in 0.000593s whereas the sequential method completed in 0.094922s.

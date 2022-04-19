@@ -1,0 +1,13 @@
+
+ Created new thread (10098936) ... 
+
+ Created new thread (10109424) ... 
+
+ Created new thread (10110152) ... 
+
+ Created new thread (10110880) ... 
+Hello! - got hello! from thread # 10098936
+Hello! - got hello! from thread # 10109424
+Hello! - got hello! from thread # 10110152
+Hello! - got hello! from thread # 10110880
+All threads are done!

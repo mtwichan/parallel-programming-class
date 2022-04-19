@@ -1,0 +1,32 @@
+RESULT:
+0
+0
+0
+0
+1
+0
+0
+0
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+
+Are you surprised with the outcomes of this code? What did you expect to happen?
+I am not surprised at the outcome of this code, because they're are two seperate independent critical sections
+and the code is not synchronized, thus there's race conditions.
+
+In looking at this code, what do you think the programmer was attempting to do with the critical and atomic directives? Was it successful?
+The programmer was attempting to create a critical section for the addition and subtraction of a value, such
+that it always equals 0. It was not successful, because the result is not always 0 as seen in the results.
+
+What conclusion can you draw from this? (what can you conclude about the behaviour of atomic and critical)?
+I can conclude that running the critical and atomic directives at the same time leads to a race condition because
+they are not synchronized. Also, the critical sections are independent of each other.
