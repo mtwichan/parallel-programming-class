@@ -108,78 +108,78 @@ It does not need to worry about synchronization thus it is also faster than the 
 int add_vector(int * A, int size);
 
 /* like any C program, program's execution begins in main */
-//int main(int argc, char* argv[])
-//{
-//    /** @todo declare A and global_sum in main (with correct type)*/
-//	int* A = malloc(ARRAY_SIZE * sizeof(int));
-//	int global_sum = 0;
-//	int i = 0;
-//	double start_time = 0.0;
-//	double end_time = 0.0;
-//    /** @todo Initial A with random values */
-//    // for a given array size, generated random values for
-//    // each location of A
-//    for (i = 0; i < ARRAY_SIZE; i ++)
-//    {
-//    	/** @todo Initial A with random values */
-//    	A[i] = rand() % 2;
-//
-//    }
-//
-//
-//    /** @todo launch your parallel code!
-//    *           As you are now using the reduction operator,
-//    *           do we need to protect global_sum in a crtical section?
-//    *           timing!
-//    **/
-//    start_time = omp_get_wtime();
-//    global_sum = add_vector(A, ARRAY_SIZE);
-//    end_time = omp_get_wtime();
-//
-//
-//    /** @todo
-//     * Check the results to make sure the sums are working!
-//     * Print out sums and timing information with number of threads)
-//     * Use your code from last week - Lab 3 - Q2
-//     **/
-//	printf("Parallel code time: %f seconds\n", end_time - start_time);
-//	printf("Parallel sum: %d\n", global_sum);
-//	printf("Parallel threads: %d\n", NUM_THREADS);
-//
-//	global_sum = 0;
-//	start_time = omp_get_wtime();
-//	for (i = 0; i < ARRAY_SIZE; i++) {
-//			global_sum += A[i];
-//		}
-//	end_time = omp_get_wtime();
-//
-//	printf("Serial code time: %f seconds\n", end_time - start_time);
-//	printf("Serial sum: %d", global_sum);
-//
-//	free(A);
-//    exit(0);
-//}
-//
-///** @todo complete this function */
-//int add_vector(int * A, int size)
-//{
-//    // this will work through only a portion of the array
-//    // Each thread, will process only a part of the global array
-//    // and it's starting position will be controlled by thread
-//    // number and range.
-//    //
-//
-//	int local_sum = 0;
-//		#pragma omp parallel reduction(+:local_sum) num_threads(NUM_THREADS)
-//		{
-//			int thread_id = omp_get_thread_num();
-//			int thread_ele = size / NUM_THREADS;
-//			int start = thread_id * thread_ele;
-//			int end = start + thread_ele - 1;
-//
-//			for (int idx = start; idx <= end; idx++) {
-//				local_sum += A[idx];
-//			}
-//		}
-//	return local_sum;
-//}
+int main(int argc, char* argv[])
+{
+   /** @todo declare A and global_sum in main (with correct type)*/
+	int* A = malloc(ARRAY_SIZE * sizeof(int));
+	int global_sum = 0;
+	int i = 0;
+	double start_time = 0.0;
+	double end_time = 0.0;
+   /** @todo Initial A with random values */
+   // for a given array size, generated random values for
+   // each location of A
+   for (i = 0; i < ARRAY_SIZE; i ++)
+   {
+   	/** @todo Initial A with random values */
+   	A[i] = rand() % 2;
+
+   }
+
+
+   /** @todo launch your parallel code!
+   *           As you are now using the reduction operator,
+   *           do we need to protect global_sum in a crtical section?
+   *           timing!
+   **/
+   start_time = omp_get_wtime();
+   global_sum = add_vector(A, ARRAY_SIZE);
+   end_time = omp_get_wtime();
+
+
+   /** @todo
+    * Check the results to make sure the sums are working!
+    * Print out sums and timing information with number of threads)
+    * Use your code from last week - Lab 3 - Q2
+    **/
+	printf("Parallel code time: %f seconds\n", end_time - start_time);
+	printf("Parallel sum: %d\n", global_sum);
+	printf("Parallel threads: %d\n", NUM_THREADS);
+
+	global_sum = 0;
+	start_time = omp_get_wtime();
+	for (i = 0; i < ARRAY_SIZE; i++) {
+			global_sum += A[i];
+		}
+	end_time = omp_get_wtime();
+
+	printf("Serial code time: %f seconds\n", end_time - start_time);
+	printf("Serial sum: %d", global_sum);
+
+	free(A);
+   exit(0);
+}
+
+/** @todo complete this function */
+int add_vector(int * A, int size)
+{
+   // this will work through only a portion of the array
+   // Each thread, will process only a part of the global array
+   // and it's starting position will be controlled by thread
+   // number and range.
+   //
+
+	int local_sum = 0;
+		#pragma omp parallel reduction(+:local_sum) num_threads(NUM_THREADS)
+		{
+			int thread_id = omp_get_thread_num();
+			int thread_ele = size / NUM_THREADS;
+			int start = thread_id * thread_ele;
+			int end = start + thread_ele - 1;
+
+			for (int idx = start; idx <= end; idx++) {
+				local_sum += A[idx];
+			}
+		}
+	return local_sum;
+}

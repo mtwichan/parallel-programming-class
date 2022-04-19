@@ -59,88 +59,88 @@ int length;
  * make sure size is shared across all threads,
  * and idx is private (each thread will need it's own copy)
  **/
-//void add_vector(int* C, int* A, int* B, int size);
+void add_vector(int* C, int* A, int* B, int size);
 
 /* like any C program, program's execution begins in main */
-//int main(int argc, char* argv[])
-//{
-//
-//	int* A = malloc(ARRAY_SIZE * sizeof(int));
-//	int* B = malloc(ARRAY_SIZE * sizeof(int));
-//	int* C = malloc(ARRAY_SIZE * sizeof(int));
-//
-//	double start_time = 0.0;
-//	double end_time = 0.0;
-//
-//	if ((A == NULL) || (B == NULL) || (C == NULL)) {
-//		printf("Not enough memory.");
-//		free(A);
-//		free(B);
-//		free(C);
-//		return 1;
-//	}
-//
-//    // for a given array size, generated random values for
-//    // each location of A and B (+4)
-//    for (int i = 0; i < ARRAY_SIZE; i ++)
-//    {
-//
-//        A[i] = rand();
-//	    B[i] = rand();
-//    }
-//
-//    /** Compare this to how this was accomplished with pThreads (or even OpenMP
-//    * where we had to manually slice the array.  Parallel for is a very powerful
-//    * construction
-//    **/
-//    /** @todo add timing information for this call.  Compare this to Q2.*/
-//	start_time = omp_get_wtime();
-//	add_vector(C, A, B, ARRAY_SIZE);
-//	end_time = omp_get_wtime();
-//
-//	printf("Execution time: %f ms\n", (end_time - start_time) / 1000.0);
-//	printf("Parallel threads: %d\n", NUM_THREADS);
-//
-//    //check results
-//    char bad = 0;
-//
-//    for (int i = 0; i < ARRAY_SIZE; i ++)
-//    {
-//	    if (A[i] + B[i] != C[i])
-//	    {
-//	    	    printf("Error at %d\n",i);
-//		    bad |= 1;
-//	    } else {
-//				if (i < 10) {
-//					printf("%d ", C[i]);
-//				}
-//	    }
-//    }
-//    if (bad)
-//    {
-//	    printf("Sums failed\n");
-//    }
-//    else
-//    {
-//	    printf("\nSums all good!\n");
-//    }
-//    free(A);
-//    free(B);
-//    free(C);
-//    exit(0);
-//}
+int main(int argc, char* argv[])
+{
+
+	int* A = malloc(ARRAY_SIZE * sizeof(int));
+	int* B = malloc(ARRAY_SIZE * sizeof(int));
+	int* C = malloc(ARRAY_SIZE * sizeof(int));
+
+	double start_time = 0.0;
+	double end_time = 0.0;
+
+	if ((A == NULL) || (B == NULL) || (C == NULL)) {
+		printf("Not enough memory.");
+		free(A);
+		free(B);
+		free(C);
+		return 1;
+	}
+
+   // for a given array size, generated random values for
+   // each location of A and B (+4)
+   for (int i = 0; i < ARRAY_SIZE; i ++)
+   {
+
+       A[i] = rand();
+	    B[i] = rand();
+   }
+
+   /** Compare this to how this was accomplished with pThreads (or even OpenMP
+   * where we had to manually slice the array.  Parallel for is a very powerful
+   * construction
+   **/
+   /** @todo add timing information for this call.  Compare this to Q2.*/
+	start_time = omp_get_wtime();
+	add_vector(C, A, B, ARRAY_SIZE);
+	end_time = omp_get_wtime();
+
+	printf("Execution time: %f ms\n", (end_time - start_time) / 1000.0);
+	printf("Parallel threads: %d\n", NUM_THREADS);
+
+   //check results
+   char bad = 0;
+
+   for (int i = 0; i < ARRAY_SIZE; i ++)
+   {
+	    if (A[i] + B[i] != C[i])
+	    {
+	    	    printf("Error at %d\n",i);
+		    bad |= 1;
+	    } else {
+				if (i < 10) {
+					printf("%d ", C[i]);
+				}
+	    }
+   }
+   if (bad)
+   {
+	    printf("Sums failed\n");
+   }
+   else
+   {
+	    printf("\nSums all good!\n");
+   }
+   free(A);
+   free(B);
+   free(C);
+   exit(0);
+}
 
 /** 
  * make sure size is shared across all threads,
  * and idx is private (each thread will need it's own copy)
  **/
-//void add_vector(int* C, int* A, int* B, int size)
-//{
-//    int idx = 0;
-//    /** @todo parallel code goes here! **/
-//	#pragma omp parallel for num_threads(NUM_THREADS) private(idx) shared(size)
-//		for (idx=0; idx < size; idx++) {
-//			C[idx] = A[idx] + B[idx];
-//		}
-//
-//}
+void add_vector(int* C, int* A, int* B, int size)
+{
+   int idx = 0;
+   /** @todo parallel code goes here! **/
+	#pragma omp parallel for num_threads(NUM_THREADS) private(idx) shared(size)
+		for (idx=0; idx < size; idx++) {
+			C[idx] = A[idx] + B[idx];
+		}
+
+}

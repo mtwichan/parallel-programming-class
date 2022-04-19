@@ -171,55 +171,55 @@ void add_vector(int* A, int size, int* global_sum, int num_threads) {
 }
 
 /* like any C program, program's execution begins in main */
-//int main(int argc, char* argv[])
-//{
-//    /** @todo declare A and global_sum in main (with correct type)*/
-//	int* A = malloc(ARRAY_SIZE * sizeof(int));
-//	int global_sum = 0;
-//	int i = 0;
-//	double start_time = 0.0;
-//	double end_time = 0.0;
-//
-//	// Error checking
-//	if (A == NULL) {
-//		printf("Error: malloc does not have enough memory for desired array size.");
-//		return 1;
-//	}
-//
-//	if ((ARRAY_SIZE % NUM_THREADS) != 0) {
-//			printf("Error: parallel code, size of array must be an even number and divisible by the number of threads.\n");
-//			return 1;
-//		}
-//
-//    /** @todo Initial A with random values */
-//    // for a given array size, generated random values for
-//    // each location of A
-//	for (i = 0; i <= ARRAY_SIZE; i++) {
-//		A[i] = rand() % 2;
-//	}
-//
-//    /** @todo launch your parallel code! **/
-//    /** +2, +1 (timing) */
-//	start_time = omp_get_wtime();
-//	add_vector(A, ARRAY_SIZE, &global_sum, NUM_THREADS);
-//	end_time = omp_get_wtime();
-//
-//	printf("Parallel code time: %f seconds\n", end_time - start_time);
-//	printf("Parallel sum: %d\n", global_sum);
-//	printf("Parallel threads: %d\n", NUM_THREADS);
-//
-//    /** @todo calculate sum serially and check results.
-//     * print out sums and timing information with number of threads)
-//     **/
-//	global_sum = 0;
-//	start_time = omp_get_wtime();
-//	for (i = 0; i < ARRAY_SIZE; i++) {
-//			global_sum += A[i];
-//		}
-//	end_time = omp_get_wtime();
-//
-//	printf("Serial code time: %f seconds\n", end_time - start_time);
-//	printf("Serial sum: %d", global_sum);
-//	free(A);
-//    exit(0);
-//}
+int main(int argc, char* argv[])
+{
+   /** @todo declare A and global_sum in main (with correct type)*/
+	int* A = malloc(ARRAY_SIZE * sizeof(int));
+	int global_sum = 0;
+	int i = 0;
+	double start_time = 0.0;
+	double end_time = 0.0;
+
+	// Error checking
+	if (A == NULL) {
+		printf("Error: malloc does not have enough memory for desired array size.");
+		return 1;
+	}
+
+	if ((ARRAY_SIZE % NUM_THREADS) != 0) {
+			printf("Error: parallel code, size of array must be an even number and divisible by the number of threads.\n");
+			return 1;
+		}
+
+   /** @todo Initial A with random values */
+   // for a given array size, generated random values for
+   // each location of A
+	for (i = 0; i <= ARRAY_SIZE; i++) {
+		A[i] = rand() % 2;
+	}
+
+   /** @todo launch your parallel code! **/
+   /** +2, +1 (timing) */
+	start_time = omp_get_wtime();
+	add_vector(A, ARRAY_SIZE, &global_sum, NUM_THREADS);
+	end_time = omp_get_wtime();
+
+	printf("Parallel code time: %f seconds\n", end_time - start_time);
+	printf("Parallel sum: %d\n", global_sum);
+	printf("Parallel threads: %d\n", NUM_THREADS);
+
+   /** @todo calculate sum serially and check results.
+    * print out sums and timing information with number of threads)
+    **/
+	global_sum = 0;
+	start_time = omp_get_wtime();
+	for (i = 0; i < ARRAY_SIZE; i++) {
+			global_sum += A[i];
+		}
+	end_time = omp_get_wtime();
+
+	printf("Serial code time: %f seconds\n", end_time - start_time);
+	printf("Serial sum: %d", global_sum);
+	free(A);
+   exit(0);
+}

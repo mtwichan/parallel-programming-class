@@ -83,33 +83,33 @@ int* vecCreateOpenMP(int size, int num_thread) {
 
 // Main method
 
-//int main() {
-//	// Init variables
-//	int size = 500000000;
-//	int num_thread = 3;
-//	int* vector_serial = NULL;
-//	int* vector_parallel = NULL;
-//	double start_time = 0.0;
-//	double end_time = 0.0;
-//
-//	// Serial testing code
-//	start_time = omp_get_wtime();
-//	vector_serial = vecCreate(size);
-//	end_time = omp_get_wtime();
-//	if (vector_serial != NULL) {
-//			printf("Serial code processed in: %f seconds\n", end_time - start_time);
-//			printf("Serial vector last item: %d\n", vector_serial[size - 1]);
-//		}
-//	free(vector_serial);
-//
-//	// Parallel testing code
-//	start_time = omp_get_wtime();
-//	vector_parallel = vecCreateOpenMP(size, num_thread);
-//	end_time = omp_get_wtime();
-//	if (vector_parallel != NULL) {
-//		printf("Parallel code processed in: %f seconds\n", end_time - start_time);
-//		printf("Parallel vector last item: %d\n", vector_parallel[size - 1]);
-//	}
-//	free(vector_parallel);
-//}
+int main() {
+	// Init variables
+	int size = 500000000;
+	int num_thread = 3;
+	int* vector_serial = NULL;
+	int* vector_parallel = NULL;
+	double start_time = 0.0;
+	double end_time = 0.0;
+
+	// Serial testing code
+	start_time = omp_get_wtime();
+	vector_serial = vecCreate(size);
+	end_time = omp_get_wtime();
+	if (vector_serial != NULL) {
+			printf("Serial code processed in: %f seconds\n", end_time - start_time);
+			printf("Serial vector last item: %d\n", vector_serial[size - 1]);
+		}
+	free(vector_serial);
+
+	// Parallel testing code
+	start_time = omp_get_wtime();
+	vector_parallel = vecCreateOpenMP(size, num_thread);
+	end_time = omp_get_wtime();
+	if (vector_parallel != NULL) {
+		printf("Parallel code processed in: %f seconds\n", end_time - start_time);
+		printf("Parallel vector last item: %d\n", vector_parallel[size - 1]);
+	}
+	free(vector_parallel);
+}
 

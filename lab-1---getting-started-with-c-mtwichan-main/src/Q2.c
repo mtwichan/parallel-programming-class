@@ -25,52 +25,52 @@ Vector Size (1 billion) Result:
  ============================================================================
  */
 
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <time.h>
-//
-//int main(void) {
-//	// Init variables
-//	clock_t start, end;
-//	double total_time;
-//	const int ARRAY_SIZE = 100000000;
-//	int sum = 0;
-//	int* A = (int*) malloc(ARRAY_SIZE * sizeof(int));
-//	int* B = (int*) malloc(ARRAY_SIZE * sizeof(int));
-//	int* C = (int*) malloc(ARRAY_SIZE * sizeof(int));
-//
-//	// Check if memory successfully allocated
-//	if (A == NULL || B == NULL || C == NULL) {
-//		// Memory allocation failed
-//		printf("Not enough memory.");
-//		fflush(stdout);
-//		return EXIT_FAILURE;
-//	}
-//
-//	// Start timer
-//	start = clock();
-//
-//	// Run algorithim
-//	for (int i = 0; i < ARRAY_SIZE; i++) {
-//		A[i] = i * 3;
-//		B[i] = -i * 3;
-//		C[i] = A[i] + B[i];
-//	}
-//
-//	for (int i = 0; i < ARRAY_SIZE; i++) {
-//		sum = sum + C[i];
-//	}
-//
-//	// Finish timer
-//	end = clock();
-//
-//	// Calculate time
-//	total_time = (double)(end - start) / CLOCKS_PER_SEC;
-//
-//	// Successful run
-//	printf("Sum: %d \n", sum);
-//	printf("Execution time: %.2f sec", total_time);
-//	fflush(stdout);
-//
-//	return EXIT_SUCCESS;
-//}
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(void) {
+	// Init variables
+	clock_t start, end;
+	double total_time;
+	const int ARRAY_SIZE = 100000000;
+	int sum = 0;
+	int* A = (int*) malloc(ARRAY_SIZE * sizeof(int));
+	int* B = (int*) malloc(ARRAY_SIZE * sizeof(int));
+	int* C = (int*) malloc(ARRAY_SIZE * sizeof(int));
+
+	// Check if memory successfully allocated
+	if (A == NULL || B == NULL || C == NULL) {
+		// Memory allocation failed
+		printf("Not enough memory.");
+		fflush(stdout);
+		return EXIT_FAILURE;
+	}
+
+	// Start timer
+	start = clock();
+
+	// Run algorithim
+	for (int i = 0; i < ARRAY_SIZE; i++) {
+		A[i] = i * 3;
+		B[i] = -i * 3;
+		C[i] = A[i] + B[i];
+	}
+
+	for (int i = 0; i < ARRAY_SIZE; i++) {
+		sum = sum + C[i];
+	}
+
+	// Finish timer
+	end = clock();
+
+	// Calculate time
+	total_time = (double)(end - start) / CLOCKS_PER_SEC;
+
+	// Successful run
+	printf("Sum: %d \n", sum);
+	printf("Execution time: %.2f sec", total_time);
+	fflush(stdout);
+
+	return EXIT_SUCCESS;
+}
